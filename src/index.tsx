@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CommandProvider from "./context/command.context";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CommandProvider>
+      <App />
+    </CommandProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

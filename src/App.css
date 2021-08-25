@@ -1,7 +1,68 @@
-.App {
-  text-align: center;
+.App{
+  padding: 10px;
+  font-size: 10px;
 }
 
+.App-header{
+  color: #fff;
+  line-height: 15px;
+  margin-bottom: 5%;
+}
+
+.App-header span{
+  display: block;
+}
+
+.Terminal{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+.Terminal .App-repository{
+  /* float: left; */
+  /* align-self: center; */
+  width: max-content;
+  word-wrap: normal;
+  /* margin-top: 1px; */
+}
+
+.Terminal .App-command{
+  flex-grow: 2;
+}
+
+input[type="text" i]{
+  padding: 0;
+}
+.App-command{
+  letter-spacing: 0.5px;
+  /* line-height: 12px; */
+  padding-bottom: 2px;
+  font: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  caret-color: #fff;
+  color: #fff;
+  text-overflow: ellipsis;
+}
+
+.History-command{
+  letter-spacing: 0.5px;
+  padding-bottom: 2px;
+  font: inherit;
+  color: #fff;
+}
+
+.App-repository{
+  padding-right: 5px;
+  font-weight: 900;
+  color: rgb(54, 194, 36);
+}
+
+
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +96,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
