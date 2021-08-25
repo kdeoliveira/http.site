@@ -6,16 +6,25 @@ function cd(args: string, tree: TreeDirectory){
 
     if(str[0].length === 0) throw new Error("Incorrect path")
 
-    const key : string[] = tree.current.path.split("/");
+
+    const key : string[] = tree.current.path.split("/").filter((x: any) => x);
+
     
+
+
+    str.forEach((x) => {
+        if(x === "..")
+            key.pop();
+        else
+            key.push(x);
+    })
     
     let temp : any = tree.tree;
 
-    console.log(temp, key);
+    console.log("@cd key:", key);
 
-    if(str.includes("..", 1))   throw Error("Backward directory incorrectly provided. To be implemented!")
 
-    
+
 
     key.forEach((x : string) => {
         if(x)
@@ -23,19 +32,19 @@ function cd(args: string, tree: TreeDirectory){
     })
 
     
-
+    console.log("@cd2 temp", temp)
     
 
     
     
     //Incorporate both altogether ---- mix the tree.current.path in one string[], then perform transverse
-    str.forEach((x) => {
-        console.log(x, temp);
-        if(temp[x] && temp[x].type === "folder")
-            temp = temp[x]
-        else
-            temp = undefined
-    })
+    // str.forEach((x) => {
+    //     console.log(x, temp);
+    //     if(temp[x] && temp[x].type === "folder")
+    //         temp = temp[x]
+    //     else
+    //         temp = undefined
+    // })
 
     
     
@@ -50,7 +59,7 @@ function cd(args: string, tree: TreeDirectory){
                 ...tree,
                 current : {
                     ...temp,
-                    path: tree.current.path.concat(str.join("/"), "/")
+                    path: key.join("/")
                 }
             }
         }
