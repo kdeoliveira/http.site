@@ -13,6 +13,10 @@ function cd(args: string, tree: TreeDirectory){
 
     console.log(temp, key);
 
+    if(str.includes("..", 1))   throw Error("Backward directory incorrectly provided. To be implemented!")
+
+    
+
     key.forEach((x : string) => {
         if(x)
             temp = temp[x]
@@ -24,7 +28,7 @@ function cd(args: string, tree: TreeDirectory){
 
     
     
-
+    //Incorporate both altogether ---- mix the tree.current.path in one string[], then perform transverse
     str.forEach((x) => {
         console.log(x, temp);
         if(temp[x] && temp[x].type === "folder")
@@ -52,6 +56,14 @@ function cd(args: string, tree: TreeDirectory){
         }
     else
         throw new Error("Incorrect path")
+}
+
+
+function front(str : string, obj: any){
+    if(obj[str] && obj[str].type === "folder")
+        return obj[str]
+    else
+        return undefined
 }
 
 export default cd;

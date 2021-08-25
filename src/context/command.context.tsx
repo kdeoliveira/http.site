@@ -1,4 +1,4 @@
-import { createContext, Provider, ReactElement, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, Provider, ReactElement, useContext,  useReducer, useState } from "react";
 import fileStructure, { BaseSystem } from "../fs/structure.fs";
 export type Context = [cmdState: CommandState, execute: ({cmd, payload}: Action) => Promise<void> | void, treeDirectory : TreeDirectory];
 
