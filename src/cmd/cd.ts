@@ -1,7 +1,23 @@
 import type {TreeDirectory} from "../context/command.context";
+import { CommandFunction } from "./cmd.type";
 
-function cd(args: string, tree: TreeDirectory){
+const cd : CommandFunction = (args: string, tree: TreeDirectory) => {
     
+
+    if(!args || args === "/") return {
+        tree: {
+            ...tree,
+            current: {
+                name: "root",
+                type: "folder",
+                path: ""
+            }
+        },
+        value: "",
+        status: "fetched"
+    }
+
+
     const str = args.trim().split("/");
 
     if(str[0].length === 0) throw new Error("Incorrect path")
@@ -9,70 +25,39 @@ function cd(args: string, tree: TreeDirectory){
 
     const key : string[] = tree.current.path.split("/").filter((x: any) => x);
 
-    
-
-
     str.forEach((x) => {
         if(x === "..")
             key.pop();
-        else
+        else if(x)
             key.push(x);
     })
     
     let temp : any = tree.tree;
 
-    console.log("@cd key:", key);
-
-
 
 
     key.forEach((x : string) => {
-        if(x)
+        if(x && temp[x] && temp[x].type === "folder")
             temp = temp[x]
+        else   
+            throw new Error(`${args}: Not a directory`)
     })
 
-    
-    console.log("@cd2 temp", temp)
-    
-
-    
-    
-    //Incorporate both altogether ---- mix the tree.current.path in one string[], then perform transverse
-    // str.forEach((x) => {
-    //     console.log(x, temp);
-    //     if(temp[x] && temp[x].type === "folder")
-    //         temp = temp[x]
-    //     else
-    //         temp = undefined
-    // })
-
-    
-    
-    // tree.current = Object.defineProperty(Object(), str.reverse()[0], {
-    //     value: temp,
-    //     enumerable: true
-    // })
-    if(temp !== undefined)
-        return {
+    if(temp === undefined) throw new Error(`${args}: Not such directory`)
+    return {
             value: "",
             tree: {
                 ...tree,
                 current : {
-                    ...temp,
+                    name: temp.name,
+                    type: temp.type,
                     path: key.join("/")
                 }
-            }
+            },
+            status: "fetched"
         }
-    else
-        throw new Error("Incorrect path")
+        
 }
 
-
-function front(str : string, obj: any){
-    if(obj[str] && obj[str].type === "folder")
-        return obj[str]
-    else
-        return undefined
-}
 
 export default cd;

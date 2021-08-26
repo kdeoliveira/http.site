@@ -1,6 +1,6 @@
 .App{
   padding: 10px;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .App-header{
@@ -17,6 +17,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 
@@ -62,9 +63,10 @@ input[type="text" i]{
 }
 
 
-/* 
 .App-logo {
-  height: 40vmin;
+  height: 25vmin;
+  margin: auto;
+  display: block;
   pointer-events: none;
 }
 
@@ -74,21 +76,6 @@ input[type="text" i]{
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -96,4 +83,4 @@ input[type="text" i]{
   to {
     transform: rotate(360deg);
   }
-} */
+}

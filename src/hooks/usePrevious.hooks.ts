@@ -6,8 +6,5 @@ export default function usePrevious<T>(value: T) :T {
     useEffect(() => {
         ref.current = value;
     }, [value]);
-
-    console.log(ref.current)
-
     return ref.current;
 }
