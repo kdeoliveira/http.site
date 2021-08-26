@@ -33,7 +33,12 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
         }
     }
     
-    console.log("rerendering")
+
+    //On component mount
+    useEffect(() => {
+
+        console.log("rerendering")
+    })
 
     const prevTree = useRef(tree.current);
 

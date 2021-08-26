@@ -1,26 +1,28 @@
-import React, {  Suspense, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
 import './App.css';
 
 import Terminal from './components/Terminal.component';
 import {DelayComponent} from "./hooks/useDelay.hooks";
 
-
-function delay(ms : number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function App() {
   
 
-  useEffect(() => {
-    
-  }, [])
+  // useEffect(() => {
+  //   window.addEventListener("load", () => {
+  //     console.log("starting");
+  //   })
+  //   return () => {
+  //     window.removeEventListener("load", () => {
+  //       console.log("starting")
+  //     })
+  //   }
+  // }, [])
 
-  console.log("App rerendering")
+  // console.log("App rerendering")
 
   return (
-    <DelayComponent ms={5000} fallback={<div>Loading</div>}>
+    <DelayComponent ms={5000} fallback={<>Loading component</>}> 
          <Terminal /> 
       </DelayComponent>
   );

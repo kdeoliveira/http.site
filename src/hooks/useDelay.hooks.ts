@@ -12,7 +12,7 @@ const useDelay = (ms: number) => {
     //in another words () => ReactElement
     return (children : any, fallback: any ) : ReactElement => 
         
-        !delay ? children : fallback
+        delay ? fallback : children
         
     
 }
