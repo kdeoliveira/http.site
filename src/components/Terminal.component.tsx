@@ -6,7 +6,6 @@ import Header from "./Header.component";
 import History from "./History.component";
 import Repository from "./Repository.component";
 
-
 export type HistoryNodes = {
     treeCurrentName: string,
     prevCmd: string,
@@ -20,11 +19,16 @@ interface TerminalProps {
 
 
 const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
+    
+
+
     const [cmdState, execute, tree, reset] = useCommand();
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [state, setState] = useState<string>("")
+    const [state, setState] = useState<string>("");
+
+    
 
     const [nodes, setNodes] = useState<HistoryNodes[]>([]);
     window.onclick = function () {
@@ -32,13 +36,6 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
             inputRef.current.focus();
         }
     }
-    
-
-    //On component mount
-    useEffect(() => {
-
-        console.log("rerendering")
-    })
 
     const prevTree = useRef(tree.current);
 

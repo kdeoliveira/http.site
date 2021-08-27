@@ -1,28 +1,25 @@
-import React, {  useEffect } from 'react';
-
+import React, {  useState } from 'react';
 import './App.css';
 
 import Terminal from './components/Terminal.component';
 import {DelayComponent} from "./hooks/useDelay.hooks";
+import Loader from "./Loader";
 
 function App() {
   
+  const log = [
+    "gnu terminal",
+    "frontend pages",
+    "pkg dependencies",
+    "git repositories",
+    "Consequat eiusmod ullamco",
+    "end!"
+]
 
-  // useEffect(() => {
-  //   window.addEventListener("load", () => {
-  //     console.log("starting");
-  //   })
-  //   return () => {
-  //     window.removeEventListener("load", () => {
-  //       console.log("starting")
-  //     })
-  //   }
-  // }, [])
-
-  // console.log("App rerendering")
+const delay = 100000;
 
   return (
-    <DelayComponent ms={5000} fallback={<>Loading component</>}> 
+    <DelayComponent ms={delay} fallback={<Loader loading={false} log={log} delay={delay}/>}> 
          <Terminal /> 
       </DelayComponent>
   );
