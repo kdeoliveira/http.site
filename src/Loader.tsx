@@ -2,13 +2,14 @@ import { ReactElement } from "react";
 import "./Loader.css";
 
 interface LoaderProps{
-    loading: boolean;
+    loading?: boolean;
     log : string[];
     delay?: number
 }
 
-const Loader : React.FC<LoaderProps> = ({loading , log, delay}) : ReactElement | null => {
-    
+const Loader : React.FC<LoaderProps> = ({log, delay, loading = false}) : ReactElement | null => {
+
+//Lazy-Suspense loader components
 // https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52/
 
     const totalDuration = delay!/log.length;

@@ -20,8 +20,6 @@ interface TerminalProps {
 
 const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
     
-
-
     const [cmdState, execute, tree, reset] = useCommand();
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -95,12 +93,17 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
         
     // }
 
+
+
+
     return (
         <div className="App">
             <Header />
             <History >
                 {nodes}
             </History>
+
+
             <div className="Terminal">
                 <Repository>{tree.current.path}</Repository>
                 {
@@ -120,6 +123,7 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
             )} */}
 
             </div>
+            
         </div>
     )
 }

@@ -1,27 +1,52 @@
-import React, {  useState } from 'react';
+import React, {  ReactElement, Suspense, useEffect, useState } from 'react';
 import './App.css';
 
+
+import DesktopWindow from "./components/DesktopWindow.component"
+
 import Terminal from './components/Terminal.component';
-import {DelayComponent} from "./hooks/useDelay.hooks";
-import Loader from "./Loader";
+
+
+import Application from "./components/Application.component";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
-  
-  const log = [
-    "gnu terminal",
-    "frontend pages",
-    "pkg dependencies",
-    "git repositories",
-    "Consequat eiusmod ullamco",
-    "end!"
-]
 
-const delay = 100000;
+//   useEffect(() => {
+//     console.log(divRef.current?.addEventListener("keydown", (x) => console.log(x)))
+// }, [divRef])
 
   return (
-    <DelayComponent ms={delay} fallback={<Loader loading={false} log={log} delay={delay}/>}> 
-         <Terminal /> 
-      </DelayComponent>
+    // <DelayComponent ms={delay} fallback={<Loader loading={false} log={log} delay={delay}/>}> 
+    //      <Terminal /> 
+    //   </DelayComponent>
+<BrowserRouter>
+    
+      <Switch>
+        <Route path="/" exact={true} >
+    <Application  delay={0} >
+        {{
+          main: <Terminal />,
+          apps: [],
+          deps: ["cat", "nano"],
+          alt: "window"
+        }}
+    </Application>
+    </Route>
+    <Route path="/window" exact={true}>
+      <Application delay={0}>
+      {{
+        main: <DesktopWindow />,
+        apps:[],
+        alt: "/"
+      }}
+      </Application>
+    </Route>
+    </Switch>
+</BrowserRouter>
+      
+    
+
   );
 }
 

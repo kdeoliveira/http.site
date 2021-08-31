@@ -26,7 +26,8 @@ const AboutMe : ReactNode = () => {
             ╚═╝░░╚═╝╚═════╝░░╚════╝░░╚═════╝░░░░╚═╝░░░  ╚═╝░░░░░╚═╝╚══════╝</span>
             <img src={logo} alt="Logo" className="App-logo" />
             Sunt ut minim eiusmod nisi mollit voluptate anim ad reprehenderit aliquip dolore adipisicing. Ut commodo aliquip Lorem laboris dolor consequat proident non laboris ullamco pariatur elit pariatur. Quis commodo ad nisi labore Lorem elit esse adipisicing veniam culpa. Lorem magna occaecat commodo duis in adipisicing anim.
-            <input type="text" className="App-command" />
+            https://fsymbols.com/generators/
+            
         </div>
     )
 }
