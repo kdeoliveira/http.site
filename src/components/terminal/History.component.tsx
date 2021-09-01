@@ -1,7 +1,7 @@
 
 
 import { memo, ReactElement, ReactNode, useEffect } from "react";
-import type { HistoryNodes } from "./Terminal.component";
+import type { HistoryNodes } from "../Terminal.component";
 import DOMPurify from "dompurify";
 import Repository from "./Repository.component";
 import React from "react";

@@ -1,10 +1,10 @@
 import React from "react";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import { useCommand } from "../context/command.context";
-import CommandLine from "./CommandLine.component";
-import Header from "./Header.component";
-import History from "./History.component";
-import Repository from "./Repository.component";
+import CommandLine from "./terminal/CommandLine.component";
+import Header from "./terminal/Header.component";
+import History from "./terminal/History.component";
+import Repository from "./terminal/Repository.component";
 
 export type HistoryNodes = {
     treeCurrentName: string,

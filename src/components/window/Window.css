@@ -1,0 +1,56 @@
+
+.Window-grid{
+    display: grid;
+    position: relative;
+    
+    margin: auto 0 0 auto;
+    padding: 0;
+    height: calc(100% - 18px);
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fill, minmax(64px,75px));
+    grid-template-rows: repeat(auto-fill, minmax(64px,75px));
+    grid-column-gap: 10px;
+    column-gap: 10px;
+    grid-auto-flow: column;
+    place-items: center;
+    place-content: end start;
+}
+
+
+
+
+.Window-icon{
+    position: relative;
+    margin: 2px;
+    padding: 5px;
+    max-height: 73px;
+    max-width: 73px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 100ms;
+
+    border-radius: 2px;
+}
+
+.Window-icon:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.Window-icon img{
+    max-height: 64px;
+    max-width: 64px;
+    margin: auto;
+    padding: 0;
+    display: block;
+}
+
+.Window-icon span{
+    font-size: 9px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

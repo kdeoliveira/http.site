@@ -24,7 +24,7 @@ function App() {
     
       <Switch>
         <Route path="/" exact={true} >
-    <Application  delay={0} >
+    <Application  delay={2000} >
         {{
           main: <Terminal />,
           apps: [],
@@ -34,7 +34,7 @@ function App() {
     </Application>
     </Route>
     <Route path="/window" exact={true}>
-      <Application delay={0}>
+      <Application delay={2000}>
       {{
         main: <DesktopWindow />,
         apps:[],

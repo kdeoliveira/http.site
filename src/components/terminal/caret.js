@@ -1,9 +1,11 @@
-'use strict';
 
-function Caret(id, color, bgColor) {
-    this.input = document.getElementById(id);
-    this.color = color;
-    this.bgColor = bgColor;
+
+class Caret {
+    constructor(id, color, bgColor) {
+        this.input = document.getElementById(id);
+        this.color = color;
+        this.bgColor = bgColor;
+    }
 }
 
 const CaretJS = {
