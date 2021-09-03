@@ -1,14 +1,14 @@
 import React, { ReactElement, ReactNode, Suspense, useEffect, useRef, useState } from "react";
 import Loader from "../Loader";
 import { importLazy } from "../hooks/useDelay.hooks";
-import { BrowserRouter, Switch, withRouter, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 type childrenApp = {
-    main: ReactNode,
-        apps: ReactNode[],
-        addons?: ReactNode,
-        deps?: string[],
-        alt?: string
+    main: ReactNode | string,
+    apps: ReactNode[],
+    addons?: ReactNode,
+    deps?: string[],
+    alt?: string
 }
 interface ApplicationProps extends RouteComponentProps{
     children: childrenApp
@@ -27,8 +27,14 @@ const Application: React.FC<ApplicationProps> = ({ children, delay, ...props }):
 
     useEffect(() => {
         const load = async () => {
-            const Views = await importLazy(delay)((children.main as any).type.name)
-            log.push((children.main as any).type.name);
+            let Views;
+            if(process.env.NODE_ENV === "development"){
+                Views = await importLazy(delay)((children.main as any).type.name)
+                log.push((children.main as any).type.name);
+            }else{
+                Views = await importLazy(delay)(children.main as string)
+                log.push(children.main as string);
+            }
             
             children.deps && log.push(...children.deps)
 
@@ -38,7 +44,7 @@ const Application: React.FC<ApplicationProps> = ({ children, delay, ...props }):
                 
                 setComponents({
                     ...components,
-                    main : <Views key={0} />})
+                    main : <Views key={Math.random()*10} />})
                 
                 )
 

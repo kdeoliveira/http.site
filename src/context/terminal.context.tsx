@@ -1,10 +1,11 @@
 import { createContext, Provider, ReactElement, ReactNode, useContext,  useReducer, useState } from "react";
-import fileStructure, { BaseSystem } from "../fs/structure.fs";
-export type Context = [cmdState: CommandState, execute: ({cmd, payload}: Action) => Promise<void> | void, treeDirectory : TreeDirectory, reset: () => void];
+import { BaseSystem } from "../fs/structure.fs";
+import { useStoreSelector } from "../store/hooks";
+export type Context = [cmdState: TerminalState, execute: ({cmd, payload}: Action) => Promise<void> | void, reset: () => void];
 
 type COMMAND_STATUS = "not_called" | "running" | "fetched" | "error";
 
-type CommandState = { result: string | ReactNode | Function, status:  COMMAND_STATUS, fn?: Function}
+type TerminalState = { result: string | ReactNode | Function, status:  COMMAND_STATUS, fn?: Function}
 
 export type TreeDirectory = {current : any, tree : BaseSystem}
 
@@ -21,7 +22,7 @@ type Dispatch = {
     error?:string;
 }
 
-function commandReducer(cmdState: CommandState, dispatch: Dispatch) {
+function terminalReducer(cmdState: TerminalState, dispatch: Dispatch) {
     cmdState.status = dispatch.status;
 
     switch(dispatch.status){
@@ -64,21 +65,16 @@ const _import = async (name: string) => {
 }
 
 
-const CommandContext = createContext<Context | undefined>(undefined);
+const TerminalContext = createContext<Context | undefined>(undefined);
 
-function CommandProvider(props: any): ReactElement<Provider<Context>> {
+function TerminalProvider(props: any): ReactElement<Provider<Context>> {
 
     //Reducer will perform an action over a state (object);
     //it takes the actual function reducer and initial state reference object; note that an initalDefaultValue can be given as well
-    const [cmdState, dispatch] = useReducer(commandReducer, {result: "", status: "not_called"});
+    const [cmdState, dispatch] = useReducer(terminalReducer, {result: "", status: "not_called"});
 
 
-    const [tree, setTree] = useState<TreeDirectory>({
-    current: {
-        path: "",
-        name: "root",
-        type: "folder"
-    }, tree:fileStructure});
+    const tree = useStoreSelector((state) => state)
 
 
     const execute = async (action: Action) => {
@@ -92,7 +88,7 @@ function CommandProvider(props: any): ReactElement<Provider<Context>> {
             
             
 
-            result.tree && setTree(result.tree)
+            // result.tree && setTree(result.tree)
 
             return dispatch({result: result.value, command: action.cmd, status: result.status});
 
@@ -109,15 +105,15 @@ function CommandProvider(props: any): ReactElement<Provider<Context>> {
     }
 
     return (
-        <CommandContext.Provider value={[cmdState, execute, tree, reset]}  {...props}/>
+        <TerminalContext.Provider value={[cmdState, execute, reset]}  {...props}/>
     )
 }
 
 
-export const useCommand = () =>{
-    const context = useContext(CommandContext);
-    if(context === undefined)   throw new Error("useCommand must be used inside a CommandProvider context tree");
+export const useTerminal = () =>{
+    const context = useContext(TerminalContext);
+    if(context === undefined)   throw new Error("useTerminal must be used inside a TerminalProvider context tree");
     return context;
 }
 
-export default CommandProvider;
+export default TerminalProvider;

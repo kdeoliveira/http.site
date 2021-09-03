@@ -1,4 +1,4 @@
-import React, {  ReactElement, Suspense, useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 
 
@@ -9,43 +9,51 @@ import Terminal from './components/Terminal.component';
 
 import Application from "./components/Application.component";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import WindowProvider from './context/window.context';
+import TerminalProvider from './context/terminal.context';
 
 function App() {
 
-//   useEffect(() => {
-//     console.log(divRef.current?.addEventListener("keydown", (x) => console.log(x)))
-// }, [divRef])
+  //   useEffect(() => {
+  //     console.log(divRef.current?.addEventListener("keydown", (x) => console.log(x)))
+  // }, [divRef])
 
   return (
     // <DelayComponent ms={delay} fallback={<Loader loading={false} log={log} delay={delay}/>}> 
     //      <Terminal /> 
     //   </DelayComponent>
-<BrowserRouter>
-    
+    <BrowserRouter>
+
       <Switch>
         <Route path="/" exact={true} >
-    <Application  delay={2000} >
-        {{
-          main: <Terminal />,
-          apps: [],
-          deps: ["cat", "nano"],
-          alt: "window"
-        }}
-    </Application>
-    </Route>
-    <Route path="/window" exact={true}>
-      <Application delay={2000}>
-      {{
-        main: <DesktopWindow />,
-        apps:[],
-        alt: "/"
-      }}
-      </Application>
-    </Route>
-    </Switch>
-</BrowserRouter>
-      
-    
+          <TerminalProvider>
+
+            <Application delay={2000} >
+              {{
+                main: process.env.NODE_ENV === "production" ? "Terminal" : <Terminal />,
+                apps: [],
+                deps: ["cat", "nano"],
+                alt: "window"
+              }}
+            </Application>
+          </TerminalProvider>
+
+        </Route>
+        <Route path="/window" exact={true}>
+          <WindowProvider>
+            <Application delay={2000}>
+              {{
+                main: process.env.NODE_ENV === "production" ? "DesktopWindow" : <DesktopWindow />,
+                apps: [],
+                alt: "/"
+              }}
+            </Application>
+          </WindowProvider>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+
+
 
   );
 }

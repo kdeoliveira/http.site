@@ -1,6 +1,7 @@
 .App{
   padding: 10px;
   font-size: 11px;
+  cursor: text;
 }
 
 .App-header{

@@ -1,6 +1,7 @@
-import { TreeDirectory } from "../context/command.context";
+import { TreeDirectory } from "../context/terminal.context";
 import set from "lodash.set";
 import { CommandFunction } from "./cmd.type";
+import { addTreeDirectory } from "../store/action";
 
 const mkdir : CommandFunction  = (args: string, tree: TreeDirectory) => {
 
@@ -28,10 +29,10 @@ const mkdir : CommandFunction  = (args: string, tree: TreeDirectory) => {
         type: "folder"
     });
 
+    addTreeDirectory(tree.tree);
 
     return {
         value: "",
-        tree,
         status: "fetched"
     }
 }

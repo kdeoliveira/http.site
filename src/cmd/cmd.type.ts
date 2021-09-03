@@ -1,9 +1,9 @@
-import { TreeDirectory } from "../context/command.context";
+import { TreeDirectory } from "../context/terminal.context";
 
 export type CommandFunction = (args: string, tree: TreeDirectory, ...optional : any[]) => {
     
         value: any,
-        tree: TreeDirectory,
+        tree?: TreeDirectory,
         status: "fetched" | "not_called" | "running"
     
 }

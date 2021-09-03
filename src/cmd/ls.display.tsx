@@ -1,6 +1,5 @@
 import DOMPurify from "dompurify";
 import { ReactElement, useEffect } from "react";
-import { useCommand } from "../context/command.context";
 
 const LsDisplay = (vals : string[]) : ReactElement => {
     return (

@@ -1,5 +1,5 @@
 import LsDisplay from "./ls.display";
-import type { TreeDirectory } from "../context/command.context";
+import type { TreeDirectory } from "../context/terminal.context";
 import get from "lodash.get";
 
 async function ls(args: string, tree: TreeDirectory) {
@@ -27,10 +27,10 @@ async function ls(args: string, tree: TreeDirectory) {
             return k;
     });
 
+
     
     return {
         value: !!files.length && LsDisplay(files),
-        tree,
         status: "fetched"
     }
 

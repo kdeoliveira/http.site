@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
-import { useCommand } from "../context/command.context";
+import { useTerminal } from "../context/terminal.context";
+import { useStoreSelector } from "../store/hooks";
 import CommandLine from "./terminal/CommandLine.component";
 import Header from "./terminal/Header.component";
 import History from "./terminal/History.component";
@@ -20,7 +21,7 @@ interface TerminalProps {
 
 const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
     
-    const [cmdState, execute, tree, reset] = useCommand();
+    const [cmdState, execute] = useTerminal();
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,13 +36,13 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
         }
     }
 
+    const tree = useStoreSelector(state => state);
+
     const prevTree = useRef(tree.current);
 
     //Temporary fix; can be moved as an useCallback to a memoized child component
     //Temporary fix: value of tree.current is held until next rerendering for proper history nodes state mgmt; Should use usePrevious implementation
-    useEffect(() => {
-
-        
+    useEffect(() => {       
         if (cmdState.status === "error" || cmdState.status === "fetched") {
 
             //This has to be reimplemented for safety (injection)
@@ -72,8 +73,8 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
 
         if (event.code === "Enter" || event.code === "NumpadEnter") {
 
+            
             inputRef.current.value = "";
-
 
             const parsedCmd = state.trim().split(" ");
 

@@ -1,4 +1,4 @@
-import type { TreeDirectory } from "../context/command.context";
+import type { TreeDirectory } from "../context/terminal.context";
 
 import type {CommandFunction} from "./cmd.type";
 
@@ -34,7 +34,6 @@ const  cat : CommandFunction = (args: string, tree : TreeDirectory) => {
 
     return {
         value: typeof temp.content === "function" ? temp.content() : temp.content,
-        tree,
         status: "fetched"
     }
 }
