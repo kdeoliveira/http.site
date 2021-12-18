@@ -1,6 +1,7 @@
 .App{
   padding: 10px;
-  font-size: 10px;
+  font-size: 11px;
+  cursor: text;
 }
 
 .App-header{
@@ -11,12 +12,32 @@
 
 .App-header span{
   display: block;
+  margin: 5px 0;
+}
+
+.App-header span b{
+  margin: 2px;
+  padding: 3px;
+  font-family: monospace;
+  background: #eee;
+    text-align: center;
+    color: #222222;
+    border-radius: 0.3em;
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    box-shadow: 0 0.2em 0 0.05em #bababa;
+    border-bottom-color: #aaa;
 }
 
 .Terminal{
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 
@@ -36,6 +57,9 @@ input[type="text" i]{
   padding: 0;
 }
 .App-command{
+  position: relative;
+}
+.App-command input[type="text" i]{
   letter-spacing: 0.5px;
   /* line-height: 12px; */
   padding-bottom: 2px;
@@ -43,9 +67,30 @@ input[type="text" i]{
   background: transparent;
   border: none;
   outline: none;
-  caret-color: #fff;
+  width: 100%;
   color: #fff;
   text-overflow: ellipsis;
+  caret-color: transparent !important;
+}
+
+.App-command > span{
+  position: absolute;
+  letter-spacing: 0.5px;
+  left: 0;
+  top: 0;
+  height: 12px;
+}
+
+
+.custom-caret{
+  height: 12px;
+  background-color: #eee;
+  animation: blink 1200ms linear infinite;
+  width: 5px;
+  position: relative;
+  right: 0;
+  margin: 0;
+  display: inline-block;
 }
 
 .History-command{
@@ -62,9 +107,10 @@ input[type="text" i]{
 }
 
 
-/* 
 .App-logo {
-  height: 40vmin;
+  height: 25vmin;
+  margin: auto;
+  display: block;
   pointer-events: none;
 }
 
@@ -74,21 +120,6 @@ input[type="text" i]{
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -96,4 +127,21 @@ input[type="text" i]{
   to {
     transform: rotate(360deg);
   }
-} */
+}
+
+@keyframes blink{
+  0% {    
+    background-color: #ffffff;  
+  }  
+  49% {    
+    background-color: #ffffff;  
+  }  
+  60% {    
+    background-color: transparent;  
+  }  
+  99% {    
+    background-color: transparent;  
+  }  100% {    
+    background-color: #ffffff;  
+  }
+}

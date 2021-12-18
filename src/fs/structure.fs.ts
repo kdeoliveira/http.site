@@ -1,9 +1,11 @@
+import { ReactNode } from "react";
+import AboutMe from "./aboutme.fs"
 
 export interface BaseSystem {
   [key: string]: {
     type: "folder" | "file" | "link",
     name: string,
-    content?: string
+    content?: string | ReactNode
   } | BaseSystem
 }
 
@@ -68,6 +70,11 @@ const fileStructure: BaseSystem = {
   home: {
     type: "folder",
     name: "home",
+    about: {
+      type: "file",
+      name: "About Me",
+      content: AboutMe
+    },
     img: {
       type: "file",
       name: "img1.jpg",
@@ -87,18 +94,28 @@ const fileStructure: BaseSystem = {
       }
     }
   },
-  sys: {
+  bin: {
     type: "folder",
-    name: "sys",
-    img: {
+    name: "bin",
+    cd: {
       type: "file",
-      name: "img2.jpg",
-      content: "Dolore adipisicing eiusmod officia pariatur reprehenderit consequat minim ut elit consequat labore."
+      name: "cd",
+      content: "script, ASCII text executable"
     },
-    doc: {
-      name: "doc1.txt",
+    ls: {
+      name: "ls",
       type: "file",
-      content: "Veniam eiusmod duis pariatur labore mollit in cillum veniam."
+      content: "script, ASCII text executable"
+    },
+    mkdir: {
+      name: "mkdir",
+      type: "file",
+      content: "script, ASCII text executable"
+    },
+    cat: {
+      name: "cat",
+      type: "file",
+      content: "script, ASCII text executable"
     }
   }
 }

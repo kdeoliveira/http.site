@@ -1,18 +1,41 @@
-import type {TreeDirectory} from "../context/command.context";
+import type { TreeDirectory } from "../context/terminal.context";
 
-const delay = (ms:any) => new Promise(res => setTimeout(res, ms));
+import type {CommandFunction} from "./cmd.type";
+
+const  cat : CommandFunction = (args: string, tree : TreeDirectory) => {
+
+    const str = args ? args.trim().split("/") : [];
+
+    if(!str[0]) throw new Error("File name must be provided")
+
+    const key : string[] = tree.current.path.split("/").filter((x: any) => x);
+
+    str.forEach((x) => {
+        if(x === ".."){
+            key.pop();
+        }else if(x){
+            key.push(x);
+        }
+    });
+
+    let temp : any = tree.tree;
+
+    key.forEach((x : string, i: number) => {
+
+        if(i === key.length -1 && temp[x] && temp[x].type === "folder") return temp = undefined;
+        if(x)
+            temp = temp[x]
+    })
 
 
-async function cat(file : string, tree : TreeDirectory){
-    if(!file.includes(".")) throw new Error("File must be provided as argument");
-
-    await delay(5000);
-
-    return {value:"Enim elit ea esse reprehenderit aute minim dolor irure. Nisi consectetur minim est quis cillum quis excepteur dolore ut consectetur. Amet quis dolor dolore labore culpa reprehenderit voluptate. Aute in reprehenderit amet minim consequat ea quis incididunt adipisicing. Ut velit aliqua aliqua ullamco magna esse in proident nisi ut."}
     
-    
+    if(temp === undefined)  throw new Error(`${args}: Not a file`);
 
+
+    return {
+        value: typeof temp.content === "function" ? temp.content() : temp.content,
+        status: "fetched"
+    }
 }
-
 
 export default cat;

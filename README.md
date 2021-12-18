@@ -10,7 +10,10 @@ https://www.toptal.com/react/webpack-react-tutorial-pt-1
 
 # NGINX
 https://blog.devgenius.io/using-nginx-to-serve-react-application-static-vs-proxy-69b85f368e6c
-
+http://kbeezie.com/apache-with-nginx/
+https://dev.to/knowbee/how-to-setup-secure-subdomains-using-nginx-and-certbot-on-a-vps-4m8h
+https://github.com/hnasr/javascript_playground/blob/master/nginx/nginx.conf
+(CERTBOT) https://dev.to/knowbee/how-to-setup-secure-subdomains-using-nginx-and-certbot-on-a-vps-4m8h
 
 # TESTING - CYPRESS
 https://docs.cypress.io/guides/getting-started/installing-cypress#Switching-browsers

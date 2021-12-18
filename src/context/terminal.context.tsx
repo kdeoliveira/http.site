@@ -1,10 +1,11 @@
-import { createContext, Provider, ReactElement, useContext, useEffect, useReducer, useState } from "react";
-import fileStructure, { BaseSystem } from "../fs/structure.fs";
-export type Context = [cmdState: CommandState, execute: ({cmd, payload}: Action) => Promise<void> | void, treeDirectory : TreeDirectory];
+import { createContext, Provider, ReactElement, ReactNode, useContext,  useReducer, useState } from "react";
+import { BaseSystem } from "../fs/structure.fs";
+import { useStoreSelector } from "../store/hooks";
+export type Context = [cmdState: TerminalState, execute: ({cmd, payload}: Action) => Promise<void> | void, reset: () => void];
 
 type COMMAND_STATUS = "not_called" | "running" | "fetched" | "error";
 
-type CommandState = { fn: string, status:  COMMAND_STATUS}
+type TerminalState = { result: string | ReactNode | Function, status:  COMMAND_STATUS, fn?: Function}
 
 export type TreeDirectory = {current : any, tree : BaseSystem}
 
@@ -15,12 +16,13 @@ type Action = {
 
 type Dispatch = {
     command: string;
-    result?: string;
+    result?: any;
+    fn?: Function;
     status: COMMAND_STATUS;
     error?:string;
 }
 
-function commandReducer(cmdState: CommandState, dispatch: Dispatch) {
+function terminalReducer(cmdState: TerminalState, dispatch: Dispatch) {
     cmdState.status = dispatch.status;
 
     switch(dispatch.status){
@@ -28,12 +30,13 @@ function commandReducer(cmdState: CommandState, dispatch: Dispatch) {
         case "fetched":
             return cmdState = {
                 ...cmdState,
-                fn: dispatch.result!,
+                result: dispatch.result!,
+                fn: dispatch.fn
             }
         case "error":
             return cmdState = {
                 ...cmdState,
-                fn: dispatch.error!,
+                result: dispatch.error!,
             }
 
         default:
@@ -52,30 +55,26 @@ function commandReducer(cmdState: CommandState, dispatch: Dispatch) {
 
 
 const _import = async (name: string) => {
+    if(!name) return {default: () => ""};
     try{
         return await import(`../cmd/${name}`);
     }
     catch(error){
-        throw new Error(`command ${name} is not installed`)
+        throw new Error(`${name}: command not found`)
     }
 }
 
 
-const CommandContext = createContext<Context | undefined>(undefined);
+const TerminalContext = createContext<Context | undefined>(undefined);
 
-function CommandProvider(props: any): ReactElement<Provider<Context>> {
+function TerminalProvider(props: any): ReactElement<Provider<Context>> {
 
     //Reducer will perform an action over a state (object);
     //it takes the actual function reducer and initial state reference object; note that an initalDefaultValue can be given as well
-    const [cmdState, dispatch] = useReducer(commandReducer, {fn: "", status: "not_called"});
+    const [cmdState, dispatch] = useReducer(terminalReducer, {result: "", status: "not_called"});
 
 
-    const [tree, setTree] = useState<TreeDirectory>({
-    current: {
-        path: "home/",
-        name: "home",
-        type: "folder"
-    }, tree:fileStructure});
+    const tree = useStoreSelector((state) => state)
 
 
     const execute = async (action: Action) => {
@@ -84,12 +83,14 @@ function CommandProvider(props: any): ReactElement<Provider<Context>> {
 
             const fn = await _import(action.cmd);
 
+            //result is applied directly on the node state of the main Application
             const result = await fn.default(action.payload, tree);
             
+            
 
-            result.tree && setTree(result.tree)
+            // result.tree && setTree(result.tree)
 
-            return dispatch({result: result.value, command: action.cmd, status: "fetched"});
+            return dispatch({result: result.value, command: action.cmd, status: result.status});
 
         } catch (error : any) {
             return dispatch({error: error.message, command: action.cmd, status: "error"})
@@ -99,16 +100,20 @@ function CommandProvider(props: any): ReactElement<Provider<Context>> {
         
     }
 
+    const reset = () => {
+        return dispatch({result: "", command: "reset", status: "not_called"})
+    }
+
     return (
-        <CommandContext.Provider value={[cmdState, execute, tree, setTree]}  {...props}/>
+        <TerminalContext.Provider value={[cmdState, execute, reset]}  {...props}/>
     )
 }
 
 
-export const useCommand = () =>{
-    const context = useContext(CommandContext);
-    if(context === undefined)   throw new Error("useCommand must be used inside a Provider");
+export const useTerminal = () =>{
+    const context = useContext(TerminalContext);
+    if(context === undefined)   throw new Error("useTerminal must be used inside a TerminalProvider context tree");
     return context;
 }
 
-export default CommandProvider;
+export default TerminalProvider;
