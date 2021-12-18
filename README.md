@@ -1,5 +1,3 @@
-# Getting Started with Create React App
-
 
 # React Context:
 https://kentcdodds.com/blog/application-state-management-with-react
