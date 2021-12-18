@@ -1,4 +1,4 @@
-import { createContext, Provider, ReactElement, useContext, useEffect, useReducer } from "react";
+import { createContext, Provider, ReactElement, useContext,  useReducer } from "react";
 
 
 type Context = [windows: ReactElement[], execute: (arg: Dispatch) => void]
@@ -31,9 +31,9 @@ export default function WindowProvider(props : any) : ReactElement<Provider<Cont
 
     const [windows, dispatch] = useReducer(windowReducer, []);
 
-    useEffect(() => {
-        console.log("Provider rerendering")
-    })
+    // useEffect(() => {
+    //     console.log("Provider rerendering")
+    // })
 
     const execute = (action: Dispatch) => {
         dispatch(action);
