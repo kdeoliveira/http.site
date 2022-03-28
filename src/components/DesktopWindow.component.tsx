@@ -9,6 +9,7 @@ import { useWindows } from "../context/window.context";
 
 import {  viewTreeDirectory } from "../store/action";
 import { useStoreSelector } from "../store/hooks";
+import { Link } from "react-router-dom";
 
 
 const DesktopWindow = ({ children }: { children?: ReactNode[] }) => {
@@ -30,9 +31,15 @@ const DesktopWindow = ({ children }: { children?: ReactNode[] }) => {
         <div style={{
             width: "100vw",
             height: "100vh",
-            background: "url('img.jpg') center center",
+            // background: "url('img.jpg') center center",
+            background: "#222",
             backgroundSize: "contain",
         }}>
+            <div className="modal_warning">
+                This section is still not completed.<br/>
+                <Link to={"/"}>Go back to terminal</Link>
+            </div>
+
             <div className="Window-topbar">{`${currentTime.getDay()}/${currentTime.getMonth().toLocaleString('en')} ${currentTime.getHours()}:${currentTime.getMinutes()}`}</div>
             {windows}
             <GridComponent>

@@ -40,7 +40,7 @@ const Terminal: React.FC<TerminalProps> = ({ children }): ReactElement => {
 
     const prevTree = useRef(tree.current);
 
-    //Temporary fix; can be moved as an useCallback to a memoized child component
+    //Temporary fix; can be implemented as an useCallback to a memoized child component
     //Temporary fix: value of tree.current is held until next rerendering for proper history nodes state mgmt; Should use usePrevious implementation
     useEffect(() => {       
         if (cmdState.status === "error" || cmdState.status === "fetched") {

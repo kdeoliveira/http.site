@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
+import { Link } from "react-router-dom";
 import cd from "../../cmd/cd";
 import { useWindows } from "../../context/window.context";
 import { changeTreeDirectory, viewTreeDirectory } from "../../store/action";
@@ -21,11 +22,6 @@ const WindowComponent: React.FC<WindowComponentProps> = ({ directory, children, 
     
 
     const fs = viewTreeDirectory(directory);
-
-
-
-
-    
 
     const [lastPositoin, setLastPosition] = useState<any>({ })
     const innerRef = useRef<HTMLDivElement | null>(null);
@@ -87,8 +83,9 @@ const WindowComponent: React.FC<WindowComponentProps> = ({ directory, children, 
                         if (onClose) onClose({ event: e, dataKey })
                     }}>X</span>  </div>
                 </div>
-
                 <div className="Window-body">
+
+
                     
                     {fs.map(([k,v], i) => {
                         return(

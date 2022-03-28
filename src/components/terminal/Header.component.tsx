@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -6,11 +7,12 @@ const Header = ( {children} : {children?: ReactNode} ) : ReactElement => {
 
     return (
         <header className="App-header">
-        <span>Ubuntu 18.04.5 LTS tty1</span>
-        <span>Press <b>CTRL</b><b>ALT</b><b>2</b> to change to window mode</span>
+        <span>kevindeoliveira.com 1.0.1 &copy; All rights reserved </span>
+        <span>Press <b>CTRL</b><b>ALT</b><b>2</b> to change to window mode or click <Link to={"/window"}>here</Link></span>
         <br/>
-        <span>Consectetur irure ea cupidatat pariatur fugiat et labore ea anim excepteur duis sit.</span>
-        <span>Ea laborum minim est quis ad Lorem reprehenderit. Laborum non esse officia ex pariatur aliquip cillum qui esse consequat consequat aliquip consectetur velit.</span>
+        <span>This application is still under developement. Some commands may not be available</span>
+        <span>Type help to see the list of available commands</span>
+        <span>You can access the source code of this webiste <a target={"_blank"} rel="noreferrer" href="https://github.com/kdeoliveira/http.site">on github</a></span>
         {children}
       </header>
     )

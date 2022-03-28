@@ -9,6 +9,7 @@ https://kentcdodds.com/workshops/advanced-react-patterns
 https://www.toptal.com/react/webpack-react-tutorial-pt-1
 
 # NGINX
+https://www.digitalocean.com/community/tutorials/how-to-migrate-from-an-apache-web-server-to-nginx-on-an-ubuntu-vps
 https://blog.devgenius.io/using-nginx-to-serve-react-application-static-vs-proxy-69b85f368e6c
 http://kbeezie.com/apache-with-nginx/
 https://dev.to/knowbee/how-to-setup-secure-subdomains-using-nginx-and-certbot-on-a-vps-4m8h
@@ -21,3 +22,10 @@ https://docs.cypress.io/guides/getting-started/installing-cypress#Switching-brow
 
 # Terminal example
 https://github.com/ctaylo21/termy-the-terminal/blob/master/src/data/exampleFileSystem.tsx
+
+# HEADER GENERATOR
+https://fsymbols.com/generators/
+
+# Icons
+https://icons8.com/icons/
+

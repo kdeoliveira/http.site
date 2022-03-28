@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
 import AboutMe from "./aboutme.fs"
+import ContactMe from "./contactme.fs";
+import Languages from "./languages.fs";
+import FtpService from "./projects/ftp_service.fs";
+import QnxApp from "./projects/qnx_app.fs";
 
 export interface BaseSystem {
   [key: string]: {
@@ -70,28 +74,34 @@ const fileStructure: BaseSystem = {
   home: {
     type: "folder",
     name: "home",
-    about: {
+    about_me: {
       type: "file",
       name: "About Me",
       content: AboutMe
     },
-    img: {
+    languages: {
       type: "file",
-      name: "img1.jpg",
-      content: "Dolore adipisicing eiusmod officia pariatur reprehenderit consequat minim ut elit consequat labore."
+      name: "Languages",
+      content: Languages
     },
-    doc: {
+    projects: {
       name: "doc1.txt",
-      type: "file",
-      content: "Veniam eiusmod duis pariatur labore mollit in cillum veniam."
-    },
-    sys: {
-      name: "subsys",
       type: "folder",
-      extra: {
-        name: "extra",
-        type:"folder"
+      qnx_app: {
+        name: "RTOS Vehicule Monitoring System",
+        type:"file",
+        content: QnxApp
+      },
+      ftp_service: {
+        name: "FTP Client and Server",
+        type:"file",
+        content: FtpService
       }
+    },
+    contact_me: {
+      name: "subsys",
+      type: "file",
+      content: ContactMe
     }
   },
   bin: {

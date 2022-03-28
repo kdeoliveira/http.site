@@ -6,7 +6,8 @@ const LsDisplay = (vals : string[]) : ReactElement => {
         <>
             {vals.map((x, i) => (
                 <div key={i} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(x, {USE_PROFILES: {html: true}, ALLOWED_TAGS: ['font', 'b', 'div'] } ) }} style={{
-                    flexBasis: `${vals.length*25}px`,
+                    // flexBasis: `${vals.length*25}px`,
+                    flexBasis: "100px",
                     justifyContent: "space-around"
                 }}/>
             ))}
