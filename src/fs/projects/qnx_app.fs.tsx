@@ -27,8 +27,9 @@ const QnxApp : ReactNode = () => {
             <img className="medium_icon" src={c_plus_plus} alt="c_plus_plus" />
         </li>
         <li>This is a vehicule monitoring application implemented in C++ RTOS QNX systems</li>
-        <li>The application consist of two parts, a producer which gathers information a dataset and a consumer that displays those information to the user</li>
-        <li>The project with cmake (producer) and qmake (consumer) over the QNX SDP 7.0 and Qt 5.12.2 framework.</li>
+        <li>The application consist of two parts, a producer which gathers information a dataset</li>
+        <li>and a consumer that displays those information to the user</li>
+        <li>The project is built with CMake (producer) and qmake (consumer) and uses QNX SDP 7.0 and Qt 5.12.2 framework.</li>
         <li>A toolchain file is provided so the code can be either compiled to any Unix system or cross-compiled to any supported QNX x64 system</li>
         <li>Note that in order to built the GUI using GCC, the proper qmake tool needs to be generated from the Qt source files.</li>
         
