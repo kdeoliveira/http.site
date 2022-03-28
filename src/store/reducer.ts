@@ -5,8 +5,8 @@ import { TreeDirectory, TreeAction } from "./types";
 
 const init : TreeDirectory = {
     current: {
-        path: "",
-        name: "root",
+        path: "home",
+        name: "home",
         type: "folder"
     },
     tree: fileStructure

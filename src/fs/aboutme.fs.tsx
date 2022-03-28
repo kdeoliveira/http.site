@@ -8,11 +8,11 @@ const AboutMe : ReactNode = () => {
     
     
     return (
-        <div>
+        <div className="content">
             <span style={{
                 display: "block",
                 textAlign: "center",
-                margin: "10px auto",
+                margin: "20px auto",
                 fontSize: "9px",
                 whiteSpace: "pre-wrap",
                 wordBreak: "break-word"
@@ -24,10 +24,11 @@ const AboutMe : ReactNode = () => {
             ██╔══██║██╔══██╗██║░░██║██║░░░██║░░░██║░░░  ██║╚██╔╝██║██╔══╝░░<br/>
             ██║░░██║██████╦╝╚█████╔╝╚██████╔╝░░░██║░░░  ██║░╚═╝░██║███████╗<br/>
             ╚═╝░░╚═╝╚═════╝░░╚════╝░░╚═════╝░░░░╚═╝░░░  ╚═╝░░░░░╚═╝╚══════╝</span>
-            <img src={logo} alt="Logo" className="App-logo" />
-            Sunt ut minim eiusmod nisi mollit voluptate anim ad reprehenderit aliquip dolore adipisicing. Ut commodo aliquip Lorem laboris dolor consequat proident non laboris ullamco pariatur elit pariatur. Quis commodo ad nisi labore Lorem elit esse adipisicing veniam culpa. Lorem magna occaecat commodo duis in adipisicing anim.
-            https://fsymbols.com/generators/
             
+            <li>Hey there 👋, my name is Kevin and I am currently studying Computer Engineering in Canada.</li>
+            <li>I previously studied aviation and obtained a canadian commercial pilot license (CPL/IFR).</li>
+            <li>However, I ended up discovering this new field and I spend most of my time working on new projects and discovering new technologies.</li>
+            <li>And as you may see, I am a linux enthusiast &#128516;</li>
         </div>
     )
 }

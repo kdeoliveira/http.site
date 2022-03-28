@@ -16,7 +16,7 @@ interface HistoryProps {
 //A child component can be converted into a memoized component
 //memoized component that only renders when props changes
 const History: React.FC<HistoryProps> = ({ children, update }): ReactElement => {
-    ("HJERE")
+   
 
     useEffect(() => {
         window.scrollTo({

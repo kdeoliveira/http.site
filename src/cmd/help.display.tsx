@@ -1,7 +1,7 @@
 const helpDisplay = () => (
     <div>
-        GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
-These shell commands are defined internally.  Type `help' to see this list.
+        kevindeoliveira.com, version 1.0.1(debug) ({navigator.userAgent})<br/>
+These shell commands are defined internally.
 
         <ul style={{
             listStyle: "none",

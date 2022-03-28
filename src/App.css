@@ -53,6 +53,14 @@
   flex-grow: 2;
 }
 
+.Terminal .content{
+  margin: auto;
+}
+.Terminal .content li{
+  list-style: none;
+  line-height: 2;
+}
+
 input[type="text" i]{
   padding: 0;
 }
@@ -106,6 +114,23 @@ input[type="text" i]{
   color: rgb(54, 194, 36);
 }
 
+.mini_icon{
+  height: auto;
+  width: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  pointer-events: none;
+  margin-right: 5px;
+}
+
+.medium_icon{
+  height: 50px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  pointer-events: none;
+  margin: auto 10px;
+}
 
 .App-logo {
   height: 25vmin;
@@ -143,5 +168,12 @@ input[type="text" i]{
     background-color: transparent;  
   }  100% {    
     background-color: #ffffff;  
+  }
+}
+
+
+@media screen and (max-width: 650px){
+  .content span{
+    display: none !important;
   }
 }
