@@ -104,6 +104,8 @@ const fileStructure: BaseSystem = {
       content: ContactMe
     }
   },
+  // Recursively add files located under cmd/ folder and resolve its content as a specific value type
+  // Ideally its content could be loaded into the terminalex
   bin: {
     type: "folder",
     name: "bin",
