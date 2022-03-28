@@ -1,11 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
 
 # React Context:
 https://kentcdodds.com/blog/application-state-management-with-react
@@ -31,9 +23,9 @@ https://docs.cypress.io/guides/getting-started/installing-cypress#Switching-brow
 # Terminal example
 https://github.com/ctaylo21/termy-the-terminal/blob/master/src/data/exampleFileSystem.tsx
 
-
 # HEADER GENERATOR
 https://fsymbols.com/generators/
 
 # Icons
 https://icons8.com/icons/
+
