@@ -72,7 +72,7 @@ const CommandLine = forwardRef<HTMLInputElement, CommandLineProps>((props, ref):
 
     return (
     <div className="App-command">
-    <input id="caret1" ref={innerRef} autoFocus={true} type="text" autoComplete="off" onKeyUp={_handleKeyUp
+    <input autoCapitalize="off" id="caret1" ref={innerRef} autoFocus={true} type="text" autoComplete="off" onKeyUp={_handleKeyUp
     } onKeyPress={props.onKeyPress} onChange={props.onChange} onKeyDownCapture={props.onKeyPressDownCapture} />
         {/* <span className="custom-caret" /> */}
 

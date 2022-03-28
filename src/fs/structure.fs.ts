@@ -85,7 +85,7 @@ const fileStructure: BaseSystem = {
       content: Languages
     },
     projects: {
-      name: "doc1.txt",
+      name: "Projects",
       type: "folder",
       qnx_app: {
         name: "RTOS Vehicule Monitoring System",
