@@ -32,7 +32,7 @@ function App() {
               {{
                 main: process.env.NODE_ENV === "production" ? "Terminal" : <Terminal />,
                 apps: [],
-                deps: ["cat", "nano"],
+                deps: ["contact", "projects", "langauges"],
                 alt: "window"
               }}
             </Application>

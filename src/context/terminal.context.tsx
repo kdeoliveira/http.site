@@ -1,6 +1,9 @@
 import { createContext, Provider, ReactElement, ReactNode, useContext,  useReducer, useState } from "react";
 import { BaseSystem } from "../fs/structure.fs";
 import { useStoreSelector } from "../store/hooks";
+import cat from "../cmd/cat";
+
+
 export type Context = [cmdState: TerminalState, execute: ({cmd, payload}: Action) => Promise<void> | void, reset: () => void];
 
 type COMMAND_STATUS = "not_called" | "running" | "fetched" | "error";
@@ -43,14 +46,7 @@ function terminalReducer(cmdState: TerminalState, dispatch: Dispatch) {
             return cmdState;
 
     }
-        // const commandFunction = import(`../cmd/${action.cmd}.ts`);
-        // cmdState.fn = commandFunction;
-        // cmdState.fn = dispatch.result;
-        // cmdState.status = "fethed";
-        // commandFunction.then((x) => {
-        //     cmdState.fn = x.default(action.payload);
-        //     cmdState.status = "fethed";
-        // });
+
 }
 
 
@@ -79,14 +75,19 @@ function TerminalProvider(props: any): ReactElement<Provider<Context>> {
 
     const execute = async (action: Action) => {
         try {
-            dispatch({result: "", command: action.cmd, status: "running"})
-
+            dispatch({result: "", command: action.cmd, status: "running"});
+            
+            // In case each page can be executed
+            // try{    
+            //     const pages = (await cat as any)(action.cmd, tree);
+            //     return dispatch({result: pages.value, command: action.cmd, status: pages.status});
+            // }
+            // catch(error : any){
+            
             const fn = await _import(action.cmd);
 
             //result is applied directly on the node state of the main Application
             const result = await fn.default(action.payload, tree);
-            
-            
 
             // result.tree && setTree(result.tree)
 

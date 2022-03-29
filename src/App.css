@@ -1,13 +1,16 @@
 .App{
   padding: 10px;
   font-size: 11px;
-  cursor: text;
+  cursor: none;
+}
+.App input{
+  cursor: none;
 }
 
 .App-header{
   color: #fff;
   line-height: 15px;
-  margin-bottom: 5%;
+  padding-bottom: 5%;
 }
 
 .App-header span{

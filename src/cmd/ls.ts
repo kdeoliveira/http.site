@@ -6,6 +6,10 @@ async function ls(args: string, tree: TreeDirectory) {
 
     const str = args ? args.trim().split("/") : [];
 
+    if(args === "/"){
+        str.pop();
+    }
+
     const key : string[] = tree.current.path.split("/").filter((x: any) => x);
 
     str.forEach((x) => {
@@ -13,11 +17,14 @@ async function ls(args: string, tree: TreeDirectory) {
             key.pop();
         }else if(x){
             key.push(x);
+        }else if(!x && key.length > 0){
+            key.pop();
         }
     });
 
-    let temp : any = get(tree.tree, key, tree.tree);
+    let temp : any = key.length ? get(tree.tree, key, undefined) : tree.tree;
     
+    console.log(tree.tree, temp)
     if(temp === undefined)  throw new Error(`${args}: Not a directory`);
     
     const files = Object.entries(temp).filter(([k, _]) => k !== "type" && k !== "name").flatMap(([k, v]) => {

@@ -4,19 +4,7 @@ import { CommandFunction } from "./cmd.type";
 
 const cd: CommandFunction = (args: string, tree: TreeDirectory) => {
 
-
-    // if(!args || args === "/") return {
-    //     tree: {
-    //         ...tree,
-    //         current: {
-    //             name: "root",
-    //             type: "folder",
-    //             path: ""
-    //         }
-    //     },
-    //     value: "",
-    //     status: "fetched"
-    // }
+    
     if (!args || args === "/") {
         changeTreeDirectory({
             name: "root",
@@ -24,6 +12,18 @@ const cd: CommandFunction = (args: string, tree: TreeDirectory) => {
             path: ""
         });
 
+        return {
+            value: "",
+            status: "fetched"
+        }
+    }
+    else if(args && args === "~"){
+
+        changeTreeDirectory({
+            name: "home",
+            type: "folder",
+            path: "home"
+        });
         return {
             value: "",
             status: "fetched"
